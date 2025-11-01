@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Ivy Pub Quiz</title>
+    <style>
+        /* Design System */
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+
+            --font-family-base: 'FKGroteskNeue', 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300-rgb: 50, 184, 198;
+                --color-gray-300-rgb: 167, 169, 169;
+                --color-gray-200-rgb: 245, 245, 245;
+
+                --color-bg-1: rgba(29, 78, 216, 0.15);
+                --color-bg-2: rgba(180, 83, 9, 0.15);
+                --color-bg-3: rgba(21, 128, 61, 0.15);
+                --color-bg-4: rgba(185, 28, 28, 0.15);
+                --color-bg-5: rgba(107, 33, 168, 0.15);
+                --color-bg-6: rgba(194, 65, 12, 0.15);
+                --color-bg-7: rgba(190, 24, 93, 0.15);
+                --color-bg-8: rgba(8, 145, 178, 0.15);
+
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-primary-hover: var(--color-teal-400);
+                --color-primary-active: var(--color-teal-800);
+                --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+                --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-btn-primary-text: var(--color-slate-900);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+                --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-error: var(--color-red-400);
+                --color-success: var(--color-teal-300);
+            }
+        }
+
+        @font-face {
+            font-family: 'FKGroteskNeue';
+            src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-24);
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .welcome-content {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-md);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .welcome-title {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-16);
+            color: var(--color-text);
+        }
+
+        .welcome-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-32);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-24);
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-8);
+            color: var(--color-text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--space-12) var(--space-16);
+            font-size: var(--font-size-lg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background: var(--color-surface);
+            color: var(--color-text);
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: var(--space-12) var(--space-32);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            border: none;
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .btn-primary:active {
+            background: var(--color-primary-active);
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-secondary-hover);
+        }
+
+        /* Resume Options */
+        .resume-options {
+            margin-top: var(--space-32);
+            text-align: center;
+        }
+
+        .resume-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-16);
+        }
+
+        .resume-message {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-8);
+        }
+
+        .resume-details {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-24);
+        }
+
+        .resume-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
+            margin-bottom: var(--space-16);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Quiz Screen */
+        .quiz-screen {
+            display: none;
+        }
+
+        .quiz-header {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            margin-bottom: var(--space-24);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quiz-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-16);
+            flex-wrap: wrap;
+            gap: var(--space-16);
+        }
+
+        .team-name-display {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary);
+        }
+
+        .score-display {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--color-secondary);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--color-primary);
+            transition: width 0.3s;
+        }
+
+        /* Section Navigation */
+        .section-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-12);
+            margin-bottom: var(--space-24);
+        }
+
+        .section-btn {
+            padding: var(--space-16);
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .section-btn:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-btn.active {
+            background: var(--color-bg-1);
+            border-color: var(--color-primary);
+        }
+
+        .section-btn.completed {
+            background: var(--color-bg-3);
+        }
+
+        .section-title {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-4);
+        }
+
+        .section-progress {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* Question Card */
+        .question-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-24);
+        }
+
+        .question-header {
+            margin-bottom: var(--space-24);
+        }
+
+        .question-number {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+        }
+
+        .question-text {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-16);
+        }
+
+        .flag-image {
+            font-size: 80px;
+            text-align: center;
+            margin: var(--space-24) 0;
+        }
+
+        .answer-options {
+            display: grid;
+            gap: var(--space-12);
+        }
+
+        .answer-option {
+            padding: var(--space-16);
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: var(--font-size-lg);
+        }
+
+        .answer-option:hover {
+            border-color: var(--color-primary);
+            background: var(--color-bg-1);
+        }
+
+        .answer-option.selected {
+            border-color: var(--color-primary);
+            background: var(--color-bg-1);
+        }
+
+        .answer-option.correct {
+            border-color: var(--color-success);
+            background: var(--color-bg-3);
+        }
+
+        .answer-option.incorrect {
+            border-color: var(--color-error);
+            background: var(--color-bg-4);
+        }
+
+        .answer-option.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .question-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-24);
+        }
+
+        /* Results Screen */
+        .results-screen {
+            display: none;
+        }
+
+        .results-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            margin-bottom: var(--space-24);
+        }
+
+        .results-title {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-16);
+        }
+
+        .results-team {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-24);
+        }
+
+        .final-score {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+        }
+
+        .score-message {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-32);
+        }
+
+        .section-results {
+            display: grid;
+            gap: var(--space-16);
+            margin-top: var(--space-24);
+        }
+
+        .section-result {
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-result-name {
+            font-weight: var(--font-weight-medium);
+        }
+
+        .section-result-score {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Estimation Input */
+        .estimation-input {
+            width: 100%;
+            padding: var(--space-16);
+            font-size: var(--font-size-2xl);
+            text-align: center;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background: var(--color-surface);
+            color: var(--color-text);
+            font-weight: var(--font-weight-semibold);
+            transition: all 0.2s;
+        }
+
+        .estimation-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .estimation-input:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: var(--color-secondary);
+        }
+
+        /* Section Complete Screen */
+        .section-complete {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-32);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            margin-bottom: var(--space-24);
+        }
+
+        .section-complete-title {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-16);
+            color: var(--color-primary);
+        }
+
+        .section-complete-score {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin: var(--space-24) 0;
+        }
+
+        .section-complete-breakdown {
+            margin: var(--space-24) 0;
+            text-align: left;
+        }
+
+        .question-result {
+            padding: var(--space-12);
+            margin-bottom: var(--space-8);
+            background: var(--color-bg-1);
+            border-radius: var(--radius-base);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .question-result-text {
+            flex: 1;
+            font-size: var(--font-size-base);
+        }
+
+        .question-result-points {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary);
+        }
+
+        /* Correct/Incorrect Answer Styling */
+        .question-result.correct {
+            border-left: 4px solid var(--color-success);
+            background: var(--color-bg-3);
+        }
+
+        .question-result.incorrect {
+            border-left: 4px solid var(--color-error);
+            background: var(--color-bg-4);
+        }
+
+        .answer-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+
+        .answer-status-icon {
+            font-size: var(--font-size-lg);
+        }
+
+        .correct-answer-display {
+            color: var(--color-success);
+            font-weight: var(--font-weight-semibold);
+            background: var(--color-bg-3);
+            padding: var(--space-8);
+            border-radius: var(--radius-sm);
+            margin-top: var(--space-8);
+            border: 1px solid var(--color-success);
+        }
+
+        /* Estimation section correct answer styling */
+        .estimation-answers .correct-answer-display {
+            margin-top: var(--space-12);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .locked-indicator {
+            display: inline-block;
+            margin-left: var(--space-8);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* Estimation Section Styles */
+        .estimation-scores {
+            margin-bottom: var(--space-24);
+            text-align: center;
+        }
+
+        .bonus-score {
+            font-size: var(--font-size-lg);
+            color: var(--color-success);
+            font-weight: var(--font-weight-semibold);
+            margin: var(--space-8) 0;
+        }
+
+        .total-score {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            font-weight: var(--font-weight-bold);
+            margin: var(--space-8) 0;
+            padding: var(--space-12);
+            background: var(--color-bg-1);
+            border-radius: var(--radius-base);
+        }
+
+        .estimation-honest-note {
+            background: var(--color-bg-2);
+            padding: var(--space-12);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-20);
+            text-align: center;
+        }
+
+        .estimation-question-result {
+            background: var(--color-surface);
+            border: 2px solid var(--color-card-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            margin-bottom: var(--space-16);
+            transition: all 0.2s;
+        }
+
+        .estimation-question-result.accuracy-excellent {
+            border-color: var(--color-success);
+            background: var(--color-bg-3);
+        }
+
+        .estimation-question-result.accuracy-good {
+            border-color: var(--color-orange-500);
+            background: var(--color-bg-2);
+        }
+
+        .estimation-question-result.accuracy-poor {
+            border-color: var(--color-error);
+            background: var(--color-bg-4);
+        }
+
+        .question-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .estimation-answers {
+            margin: var(--space-12) 0;
+        }
+
+        .answer-comparison {
+            display: grid;
+            gap: var(--space-8);
+            padding: var(--space-12);
+            background: var(--color-background);
+            border-radius: var(--radius-sm);
+        }
+
+        .user-answer, .correct-answer, .difference {
+            font-size: var(--font-size-base);
+        }
+
+        .user-answer {
+            color: var(--color-text);
+        }
+
+        .correct-answer {
+            color: var(--color-success);
+        }
+
+        .difference {
+            color: var(--color-primary);
+        }
+
+        .closest-answer-selection {
+            margin-top: var(--space-16);
+            padding-top: var(--space-12);
+            border-top: 1px solid var(--color-card-border-inner);
+        }
+
+        .closest-checkbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: var(--space-8);
+            border-radius: var(--radius-sm);
+            transition: background-color 0.2s;
+        }
+
+        .closest-checkbox:hover {
+            background: var(--color-bg-1);
+        }
+
+        .closest-checkbox input[type="checkbox"] {
+            margin-right: var(--space-12);
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+        }
+
+        .closest-instructions {
+            color: var(--color-text-secondary);
+            font-style: italic;
+            text-align: center;
+            margin-bottom: var(--space-16);
+        }
+
+        .section-actions {
+            text-align: center;
+            border-top: 1px solid var(--color-card-border);
+            padding-top: var(--space-24);
+            margin-top: var(--space-24);
+        }
+
+        .score-update-notice {
+            background: var(--color-bg-3);
+            border: 1px solid var(--color-success);
+            border-radius: var(--radius-base);
+            padding: var(--space-12);
+            margin: var(--space-16) 0;
+            text-align: center;
+            animation: scoreUpdatePulse 2s ease-in-out;
+        }
+
+        @keyframes scoreUpdatePulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.02); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-16);
+            }
+
+            .section-nav {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .question-text {
+                font-size: var(--font-size-xl);
+            }
+
+            .flag-image {
+                font-size: 60px;
+            }
+
+            .estimation-question-result {
+                padding: var(--space-12);
+                margin-bottom: var(--space-12);
+            }
+
+            .question-result-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-8);
+            }
+
+            .answer-comparison {
+                padding: var(--space-8);
+                font-size: var(--font-size-sm);
+            }
+
+            .closest-checkbox {
+                padding: var(--space-4);
+            }
+
+            .closest-checkbox input[type="checkbox"] {
+                margin-right: var(--space-8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="container">
+            <div class="welcome-content">
+                <h1 class="welcome-title">🎯 Team Ivy Pub Quiz</h1>
+                <p class="welcome-subtitle">Test your knowledge across multiple categories!</p>
+                <form id="teamForm" onsubmit="checkForSavedProgress(event)">
+                    <div class="form-group">
+                        <label for="teamName" class="form-label">Enter Your Team Name *</label>
+                        <input 
+                            type="text" 
+                            id="teamName" 
+                            class="form-control" 
+                            placeholder="e.g., Quiz Masters" 
+                            required
+                            minlength="2"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Continue</button>
+                </form>
+                
+                <!-- Resume/Start Selection -->
+                <div id="resumeOptions" class="resume-options hidden">
+                    <h3 class="resume-title">Found Previous Progress!</h3>
+                    <p class="resume-message">We found a saved quiz for team "<span id="resumeTeamName"></span>".</p>
+                    <p class="resume-details">Progress: Section <span id="resumeSection"></span>, Question <span id="resumeQuestion"></span></p>
+                    <div class="resume-buttons">
+                        <button class="btn btn-primary" onclick="resumeQuiz()">📚 Resume Quiz</button>
+                        <button class="btn btn-secondary" onclick="startNewQuiz()">🆕 Start New Quiz</button>
+                        <button class="btn btn-secondary" onclick="clearAndRestart()">🗑️ Clear Progress & Start Over</button>
+                    </div>
+                    <button class="btn" onclick="goBackToTeamName()" style="margin-top: var(--space-16);">← Back to Team Name</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quizScreen" class="quiz-screen">
+        <div class="container">
+            <!-- Quiz Header -->
+            <div class="quiz-header">
+                <div class="quiz-header-top">
+                    <div class="team-name-display">Team: <span id="teamDisplay"></span></div>
+                    <div class="score-display">Score: <span id="scoreDisplay">0</span> / <span id="totalDisplay">0</span></div>
+                    <button class="btn btn-secondary" onclick="clearProgressAndRestart()" style="font-size: var(--font-size-sm); padding: var(--space-8) var(--space-12);">
+                        🗑️ Clear Progress
+                    </button>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Section Navigation -->
+            <div id="sectionNav" class="section-nav"></div>
+            
+            <!-- Score Update Info -->
+            <div class="score-info-note">
+                <small style="color: var(--color-text-secondary); font-style: italic; text-align: center; display: block; margin-bottom: var(--space-16);">
+                    💡 Your total score will update when you complete each section
+                </small>
+            </div>
+
+            <!-- Question Card -->
+            <div id="questionCard" class="question-card">
+                <div class="question-header">
+                    <div class="question-number" id="questionNumber"></div>
+                    <h2 class="question-text" id="questionText"></h2>
+                    <div id="flagImage" class="flag-image hidden"></div>
+                </div>
+                <div id="answerOptions" class="answer-options"></div>
+                <div class="question-navigation">
+                    <button id="prevBtn" class="btn btn-secondary" onclick="previousQuestion()">← Previous</button>
+                    <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="results-screen">
+        <div class="container">
+            <div class="results-card">
+                <h1 class="results-title">🎉 Quiz Complete!</h1>
+                <div class="results-team">Team: <span id="finalTeamName"></span></div>
+                <div class="final-score" id="finalScore">0 / 0</div>
+                <div class="score-message" id="scoreMessage"></div>
+                <button class="btn btn-primary" onclick="restartQuiz()">Start New Quiz</button>
+            </div>
+            <div class="section-results" id="sectionResults"></div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data
+        const quizData = [
+            {
+                name: "🏢 SAP Company",
+                questions: [
+                    {
+                        question: "In which year was SAP founded?",
+                        options: ["1970", "1972", "1975", "1980"],
+                        correct: 1
+                    },
+                    {
+                        question: "What does SAP stand for?",
+                        options: ["Systems Applications and Products", "Software and Product Solutions", "Strategic Analytics Platform", "System Architecture Planning"],
+                        correct: 0
+                    },
+                    {
+                        question: "Where is SAP headquartered?",
+                        options: ["Munich, Germany", "Walldorf, Germany", "Berlin, Germany", "Frankfurt, Germany"],
+                        correct: 1
+                    },
+                    {
+                        question: "Who are the co-founders of SAP?",
+                        options: ["Bill Gates and Paul Allen", "Steve Jobs and Steve Wozniak", "Dietmar Hopp, Hasso Plattner, and others", "Larry Page and Sergey Brin"],
+                        correct: 2
+                    },
+                    {
+                        question: "What is SAP's flagship ERP software called?",
+                        options: ["SAP Business One", "SAP S/4HANA", "SAP R/3", "SAP HANA"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "🏛️ Munich City",
+                questions: [
+                    {
+                        question: "Munich is the capital of which German state?",
+                        options: ["Baden-Württemberg", "Bavaria", "Hesse", "Saxony"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which famous square is the heart of Munich?",
+                        options: ["Alexanderplatz", "Marienplatz", "Potsdamer Platz", "Königsplatz"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is the name of Munich's famous football club?",
+                        options: ["Borussia Dortmund", "Bayern Munich", "Hamburg SV", "Werder Bremen"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which river flows through Munich?",
+                        options: ["Rhine", "Danube", "Isar", "Elbe"],
+                        correct: 2
+                    },
+                    {
+                        question: "In which year did Munich host the Summer Olympics?",
+                        options: ["1968", "1972", "1976", "1980"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "🍺 Oktoberfest",
+                questions: [
+                    {
+                        question: "When does Oktoberfest typically start?",
+                        options: ["Early October", "Late September", "Mid-October", "Early September"],
+                        correct: 1
+                    },
+                    {
+                        question: "How long does Oktoberfest last?",
+                        options: ["10 days", "14 days", "16-18 days", "21 days"],
+                        correct: 2
+                    },
+                    {
+                        question: "What is the traditional Oktoberfest beer mug called?",
+                        options: ["Stein", "Maß", "Krug", "Becher"],
+                        correct: 1
+                    },
+                    {
+                        question: "In which year was the first Oktoberfest held?",
+                        options: ["1800", "1810", "1820", "1830"],
+                        correct: 1
+                    },
+                    {
+                        question: "What event was the first Oktoberfest celebrating?",
+                        options: ["Harvest Festival", "Royal Wedding", "German Unity", "Beer Creation"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "🎵 Do you know the lyrics?",
+                questions: [
+                    {
+                        question: "'Is this the real life? Is this just fantasy?' - Which song?",
+                        options: ["Bohemian Rhapsody", "Imagine", "Stairway to Heaven", "Hotel California"],
+                        correct: 0
+                    },
+                    {
+                        question: "'I see a little silhouetto of a man' - Which song?",
+                        options: ["Don't Stop Believin'", "Bohemian Rhapsody", "We Will Rock You", "Another One Bites the Dust"],
+                        correct: 1
+                    },
+                    {
+                        question: "'You can check out any time you like, but you can never leave' - Which song?",
+                        options: ["Hotel California", "California Dreamin'", "Sweet Home Alabama", "Born to Run"],
+                        correct: 0
+                    },
+                    {
+                        question: "'Don't stop believin', hold on to that feelin'' - Which band?",
+                        options: ["Boston", "Foreigner", "Journey", "Styx"],
+                        correct: 2
+                    },
+                    {
+                        question: "'I'm just a poor boy, nobody loves me' - Which song?",
+                        options: ["The Sound of Silence", "Bohemian Rhapsody", "Eleanor Rigby", "Yesterday"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "🔢 Estimation & Numbers",
+                type: "estimation",
+                questions: [
+                    {
+                        question: "How many countries are members of the United Nations?",
+                        answer: 193,
+                        tolerance: 15
+                    },
+                    {
+                        question: "What is the approximate population of Germany in millions?",
+                        answer: 84,
+                        tolerance: 15
+                    },
+                    {
+                        question: "How many bones are in the adult human body?",
+                        answer: 206,
+                        tolerance: 15
+                    },
+                    {
+                        question: "How many languages are spoken in the world today?",
+                        answer: 7000,
+                        tolerance: 15
+                    },
+                    {
+                        question: "In what year was the internet made publicly available (World Wide Web)?",
+                        answer: 1991,
+                        tolerance: 15
+                    }
+                ]
+            },
+            {
+                name: "🎯 Wild Guesses",
+                type: "estimation",
+                questions: [
+                    {
+                        question: "In what year was the first iPhone released?",
+                        answer: 2007,
+                        tolerance: 15
+                    },
+                    {
+                        question: "What is the deepest ocean trench, the Mariana Trench, in meters?",
+                        answer: 11000,
+                        tolerance: 15
+                    },
+                    {
+                        question: "Approximately how many hairs does an average human have on their head?",
+                        answer: 100000,
+                        tolerance: 15
+                    },
+                    {
+                        question: "How many times per minute does the average human heart beat at rest?",
+                        answer: 72,
+                        tolerance: 15
+                    },
+                    {
+                        question: "What is the height of Mount Everest in meters?",
+                        answer: 8849,
+                        tolerance: 15
+                    }
+                ]
+            },            
+            {
+                name: "🏳️ Country Flags",
+                questions: [
+                    {
+                        question: "Which country does this flag belong to?",
+                        flag: "🇧🇷",
+                        options: ["Argentina", "Brazil", "Colombia", "Venezuela"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which country does this flag belong to?",
+                        flag: "🇯🇵",
+                        options: ["China", "South Korea", "Japan", "Thailand"],
+                        correct: 2
+                    },
+                    {
+                        question: "Which country does this flag belong to?",
+                        flag: "🇨🇦",
+                        options: ["Canada", "United States", "Denmark", "Switzerland"],
+                        correct: 0
+                    },
+                    {
+                        question: "Which country does this flag belong to?",
+                        flag: "🇿🇦",
+                        options: ["Kenya", "Nigeria", "South Africa", "Ghana"],
+                        correct: 2
+                    },
+                    {
+                        question: "Which country does this flag belong to?",
+                        flag: "🇨🇭",
+                        options: ["Austria", "Denmark", "Sweden", "Switzerland"],
+                        correct: 3
+                    }
+                ]
+            },
+            {
+                name: "🔬 Forschungscampus Garching - TUM",
+                questions: [
+                    {
+                        question: "When was the first research reactor (Atomic Egg) at Garching commissioned?",
+                        options: ["1955", "1957", "1960", "1965"],
+                        correct: 1
+                    },
+                    {
+                        question: "Since which year has the U6 metro line connected Garching to Munich?",
+                        options: ["2000", "2004", "2006", "2010"],
+                        correct: 2
+                    },
+                    {
+                        question: "How far is the Forschungscampus Garching from Munich city center?",
+                        options: ["5 km", "10 km", "15 km", "20 km"],
+                        correct: 1
+                    },
+                    {
+                        question: "How many Max Planck Institutes are located on the Garching campus?",
+                        options: ["Two", "Three", "Four", "Five"],
+                        correct: 2
+                    },
+                    {
+                        question: "When did SAP open its Research Center in Garching with a €100 million investment?",
+                        options: ["2020", "2022", "2024", "2025"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "📚 History &amp; Science",
+                questions: [
+                    {
+                        question: "In which year did World War II end?",
+                        options: ["1943", "1944", "1945", "1946"],
+                        correct: 2
+                    },
+                    {
+                        question: "Who developed the theory of relativity?",
+                        options: ["Isaac Newton", "Albert Einstein", "Niels Bohr", "Stephen Hawking"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is the smallest unit of life?",
+                        options: ["Atom", "Molecule", "Cell", "Tissue"],
+                        correct: 2
+                    },
+                    {
+                        question: "Who was the first person to walk on the moon?",
+                        options: ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "John Glenn"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is the chemical symbol for gold?",
+                        options: ["Go", "Gd", "Au", "Ag"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "🌍 Geography &amp; Culture",
+                questions: [
+                    {
+                        question: "What is the capital of Australia?",
+                        options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+                        correct: 2
+                    },
+                    {
+                        question: "Which is the longest river in the world?",
+                        options: ["Amazon", "Nile", "Yangtze", "Mississippi"],
+                        correct: 1
+                    },
+                    {
+                        question: "How many continents are there?",
+                        options: ["5", "6", "7", "8"],
+                        correct: 2
+                    },
+                    {
+                        question: "Which country has the largest population?",
+                        options: ["India", "China", "United States", "Indonesia"],
+                        correct: 0
+                    },
+                    {
+                        question: "What is the smallest country in the world?",
+                        options: ["Monaco", "San Marino", "Vatican City", "Liechtenstein"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "🎬 Entertainment &amp; Sports",
+                questions: [
+                    {
+                        question: "Who directed the movie 'Inception'?",
+                        options: ["Steven Spielberg", "Christopher Nolan", "James Cameron", "Quentin Tarantino"],
+                        correct: 1
+                    },
+                    {
+                        question: "How many Olympic rings are there?",
+                        options: ["4", "5", "6", "7"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which artist painted the Mona Lisa?",
+                        options: ["Michelangelo", "Raphael", "Leonardo da Vinci", "Donatello"],
+                        correct: 2
+                    },
+                    {
+                        question: "In which sport would you perform a slam dunk?",
+                        options: ["Volleyball", "Tennis", "Basketball", "Handball"],
+                        correct: 2
+                    },
+                    {
+                        question: "Who won the first season of American Idol?",
+                        options: ["Carrie Underwood", "Kelly Clarkson", "Clay Aiken", "Ruben Studdard"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "🤔 Trivia &amp; Odd Facts",
+                questions: [
+                    {
+                        question: "What is the only food that never spoils?",
+                        options: ["Salt", "Honey", "Rice", "Dried beans"],
+                        correct: 1
+                    },
+                    {
+                        question: "How many hearts does an octopus have?",
+                        options: ["1", "2", "3", "4"],
+                        correct: 2
+                    },
+                    {
+                        question: "What percentage of Earth's surface is covered by water?",
+                        options: ["50%", "60%", "71%", "80%"],
+                        correct: 2
+                    },
+                    {
+                        question: "A group of flamingos is called a what?",
+                        options: ["Flock", "Flamboyance", "Colony", "Murder"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is the fear of long words called?",
+                        options: ["Logophobia", "Verbophobia", "Hippopotomonstrosesquippedaliophobia", "Lexicophobia"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "🎸 Music &amp; Pop Culture",
+                questions: [
+                    {
+                        question: "Which band is known as 'The Fab Four'?",
+                        options: ["The Rolling Stones", "The Beatles", "The Who", "Led Zeppelin"],
+                        correct: 1
+                    },
+                    {
+                        question: "Who is known as the 'King of Pop'?",
+                        options: ["Elvis Presley", "Prince", "Michael Jackson", "Freddie Mercury"],
+                        correct: 2
+                    },
+                    {
+                        question: "What is the best-selling album of all time?",
+                        options: ["Back in Black", "The Dark Side of the Moon", "Thriller", "Abbey Road"],
+                        correct: 2
+                    },
+                    {
+                        question: "Which music festival took place in 1969?",
+                        options: ["Coachella", "Glastonbury", "Woodstock", "Lollapalooza"],
+                        correct: 2
+                    },
+                    {
+                        question: "Who sang 'I Will Always Love You'?",
+                        options: ["Mariah Carey", "Celine Dion", "Whitney Houston", "Tina Turner"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "🎥 Movies &amp; TV Shows",
+                questions: [
+                    {
+                        question: "Which movie won the first Academy Award for Best Picture?",
+                        options: ["Wings", "The Jazz Singer", "Sunrise", "Metropolis"],
+                        correct: 0
+                    },
+                    {
+                        question: "How many seasons of 'Friends' were produced?",
+                        options: ["8", "9", "10", "11"],
+                        correct: 2
+                    },
+                    {
+                        question: "Who played Iron Man in the Marvel Cinematic Universe?",
+                        options: ["Chris Evans", "Chris Hemsworth", "Robert Downey Jr.", "Mark Ruffalo"],
+                        correct: 2
+                    },
+                    {
+                        question: "What is the highest-grossing film of all time (unadjusted)?",
+                        options: ["Avengers: Endgame", "Avatar", "Titanic", "Star Wars: The Force Awakens"],
+                        correct: 1
+                    },
+                    {
+                        question: "In which TV series would you find the character Walter White?",
+                        options: ["The Sopranos", "Breaking Bad", "Mad Men", "The Wire"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "💻 Science &amp; Technology",
+                questions: [
+                    {
+                        question: "Who invented the World Wide Web?",
+                        options: ["Bill Gates", "Steve Jobs", "Tim Berners-Lee", "Mark Zuckerberg"],
+                        correct: 2
+                    },
+                    {
+                        question: "What does 'HTTP' stand for?",
+                        options: ["HyperText Transfer Protocol", "High Transfer Text Protocol", "HyperTransfer Technology Protocol", "Home Tool Transfer Protocol"],
+                        correct: 0
+                    },
+                    {
+                        question: "In which year was the first iPhone released?",
+                        options: ["2005", "2007", "2009", "2010"],
+                        correct: 1
+                    },
+                    {
+                        question: "What does 'AI' stand for?",
+                        options: ["Automated Intelligence", "Artificial Intelligence", "Advanced Interface", "Automatic Integration"],
+                        correct: 1
+                    },
+                    {
+                        question: "Who is considered the father of modern computing?",
+                        options: ["Charles Babbage", "Alan Turing", "John von Neumann", "Claude Shannon"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "🍕 Food &amp; Drink",
+                questions: [
+                    {
+                        question: "What is the main ingredient in hummus?",
+                        options: ["Lentils", "Chickpeas", "Black beans", "Soybeans"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which country is the origin of the croissant?",
+                        options: ["France", "Austria", "Switzerland", "Belgium"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is the most expensive spice by weight?",
+                        options: ["Vanilla", "Cardamom", "Saffron", "Cinnamon"],
+                        correct: 2
+                    },
+                    {
+                        question: "What type of pasta is shaped like little ears?",
+                        options: ["Farfalle", "Orecchiette", "Conchiglie", "Fusilli"],
+                        correct: 1
+                    },
+                    {
+                        question: "Champagne is produced in which region of France?",
+                        options: ["Bordeaux", "Burgundy", "Champagne", "Loire Valley"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "📖 World Literature &amp; Arts",
+                questions: [
+                    {
+                        question: "Who wrote 'Pride and Prejudice'?",
+                        options: ["Charlotte Brontë", "Jane Austen", "Emily Brontë", "George Eliot"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which Shakespeare play features the characters Rosencrantz and Guildenstern?",
+                        options: ["Macbeth", "Othello", "Hamlet", "King Lear"],
+                        correct: 2
+                    },
+                    {
+                        question: "Who painted 'The Starry Night'?",
+                        options: ["Pablo Picasso", "Vincent van Gogh", "Claude Monet", "Paul Cézanne"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is the first book in the Harry Potter series?",
+                        options: ["The Chamber of Secrets", "The Prisoner of Azkaban", "The Philosopher's Stone", "The Goblet of Fire"],
+                        correct: 2
+                    },
+                    {
+                        question: "Who wrote 'One Hundred Years of Solitude'?",
+                        options: ["Jorge Luis Borges", "Gabriel García Márquez", "Pablo Neruda", "Octavio Paz"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "⚖️ Strange Laws &amp; Customs",
+                questions: [
+                    {
+                        question: "In which country is it illegal to chew gum?",
+                        options: ["Japan", "Singapore", "South Korea", "Thailand"],
+                        correct: 1
+                    },
+                    {
+                        question: "In Switzerland, it's illegal to do what after 10 PM in an apartment?",
+                        options: ["Vacuum", "Flush the toilet", "Play music", "All of the above"],
+                        correct: 1
+                    },
+                    {
+                        question: "In which country is it illegal to name your pig Napoleon?",
+                        options: ["England", "France", "Italy", "Spain"],
+                        correct: 1
+                    },
+                    {
+                        question: "In Venice, it's illegal to do what in public?",
+                        options: ["Eat ice cream", "Feed pigeons", "Take photos", "Sing"],
+                        correct: 1
+                    },
+                    {
+                        question: "In which US state is it illegal to carry an ice cream cone in your back pocket?",
+                        options: ["Texas", "Florida", "Alabama", "California"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "🦒 Animal Kingdom Oddities",
+                questions: [
+                    {
+                        question: "Which animal can sleep for up to three years?",
+                        options: ["Bear", "Snail", "Bat", "Turtle"],
+                        correct: 1
+                    },
+                    {
+                        question: "What is the only mammal capable of true flight?",
+                        options: ["Flying squirrel", "Bat", "Sugar glider", "Flying lemur"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which animal has three hearts?",
+                        options: ["Giraffe", "Elephant", "Octopus", "Whale"],
+                        correct: 2
+                    },
+                    {
+                        question: "What color is a polar bear's skin?",
+                        options: ["White", "Pink", "Black", "Gray"],
+                        correct: 2
+                    },
+                    {
+                        question: "Which bird can fly backwards?",
+                        options: ["Eagle", "Hummingbird", "Sparrow", "Penguin"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                name: "🏆 Record Breakers",
+                questions: [
+                    {
+                        question: "What is the world's longest fingernails ever recorded?",
+                        options: ["5 meters", "7 meters", "9 meters", "Over 9 meters"],
+                        correct: 3
+                    },
+                    {
+                        question: "Who holds the record for the most Olympic gold medals?",
+                        options: ["Usain Bolt", "Carl Lewis", "Michael Phelps", "Mark Spitz"],
+                        correct: 2
+                    },
+                    {
+                        question: "What is the fastest land animal?",
+                        options: ["Lion", "Cheetah", "Gazelle", "Greyhound"],
+                        correct: 1
+                    },
+                    {
+                        question: "The tallest building in the world is located in which city?",
+                        options: ["Shanghai", "New York", "Dubai", "Kuala Lumpur"],
+                        correct: 2
+                    },
+                    {
+                        question: "What is the record for most hot dogs eaten in 10 minutes?",
+                        options: ["50", "60", "70+", "80+"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                name: "🎭 Historical Quirks",
+                questions: [
+                    {
+                        question: "Ancient Romans used what as mouthwash?",
+                        options: ["Wine", "Urine", "Saltwater", "Vinegar"],
+                        correct: 1
+                    },
+                    {
+                        question: "Which historical figure was known to take 50+ baths a day?",
+                        options: ["Cleopatra", "King Louis XIV", "Napoleon", "Queen Elizabeth I"],
+                        correct: 1
+                    },
+                    {
+                        question: "What did Napoleon Bonaparte fear?",
+                        options: ["Horses", "Cats", "Water", "Heights"],
+                        correct: 1
+                    },
+                    {
+                        question: "In medieval times, what was used as a cure for baldness?",
+                        options: ["Bear grease", "Chicken droppings", "Eel oil", "All of the above"],
+                        correct: 3
+                    },
+                    {
+                        question: "The shortest war in history lasted how long?",
+                        options: ["38 minutes", "45 minutes", "1 hour", "2 hours"],
+                        correct: 0
+                    }
+                ]
+            },
+            {
+                name: "🧠 Human Body Mysteries",
+                questions: [
+                    {
+                        question: "How many bones does an adult human have?",
+                        options: ["186", "206", "226", "246"],
+                        correct: 1
+                    },
+                    {
+                        question: "What percentage of the human body is water?",
+                        options: ["50%", "60%", "70%", "80%"],
+                        correct: 1
+                    },
+                    {
+                        question: "How long does it take for food to pass through the entire digestive system?",
+                        options: ["12 hours", "24 hours", "30-40 hours", "48 hours"],
+                        correct: 2
+                    },
+                    {
+                        question: "The human nose can detect how many different scents?",
+                        options: ["1,000", "10,000", "100,000", "Over 1 trillion"],
+                        correct: 3
+                    },
+                    {
+                        question: "What is the strongest muscle in the human body relative to its size?",
+                        options: ["Heart", "Tongue", "Jaw muscle (Masseter)", "Calf muscle"],
+                        correct: 2
+                    }
+                ]
+            }
+        ];
+
+        // State Management
+        let teamName = '';
+        let currentSection = 0;
+        let currentQuestion = 0;
+        let userAnswers = {};
+        let lockedAnswers = {}; // Track which answers are locked
+        let closestAnswerSelections = {}; // Track which questions user claims to be closest on
+        let bonusPoints = {}; // Track bonus points per section
+        let completedSectionScores = {}; // Track scores from fully completed sections
+        let displayedTotalScore = 0; // Score shown at the top (only updates on section complete)
+        let totalScore = 0; // Internal calculation for current total
+        let totalQuestions = 0;
+        let completedSections = {};
+        let showingSectionComplete = false;
+
+        // LocalStorage Management
+        function sanitizeTeamName(name) {
+            return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+        }
+
+        function getStorageKey(teamName) {
+            return `pubquiz_progress_${sanitizeTeamName(teamName)}`;
+        }
+
+        function saveProgress() {
+            if (!teamName) return;
+            
+            try {
+                const state = {
+                    teamName: teamName,
+                    currentSection: currentSection,
+                    currentQuestion: currentQuestion,
+                    userAnswers: userAnswers,
+                    lockedAnswers: lockedAnswers,
+                    closestAnswerSelections: closestAnswerSelections,
+                    bonusPoints: bonusPoints,
+                    completedSectionScores: completedSectionScores,
+                    displayedTotalScore: displayedTotalScore,
+                    totalScore: totalScore,
+                    completedSections: completedSections,
+                    showingSectionComplete: showingSectionComplete,
+                    timestamp: Date.now()
+                };
+                
+                const key = getStorageKey(teamName);
+                localStorage.setItem(key, JSON.stringify(state));
+                console.log('Progress saved for team:', teamName);
+            } catch (error) {
+                console.warn('Failed to save progress:', error);
+            }
+        }
+
+        function loadProgress(teamName) {
+            try {
+                const key = getStorageKey(teamName);
+                const savedData = localStorage.getItem(key);
+                
+                if (!savedData) return null;
+                
+                const state = JSON.parse(savedData);
+                
+                // Validate the saved state
+                if (!state.teamName || state.currentSection === undefined) {
+                    throw new Error('Invalid saved state');
+                }
+                
+                return state;
+            } catch (error) {
+                console.warn('Failed to load progress:', error);
+                return null;
+            }
+        }
+
+        function restoreState(state) {
+            teamName = state.teamName;
+            currentSection = state.currentSection || 0;
+            currentQuestion = state.currentQuestion || 0;
+            userAnswers = state.userAnswers || {};
+            lockedAnswers = state.lockedAnswers || {};
+            closestAnswerSelections = state.closestAnswerSelections || {};
+            bonusPoints = state.bonusPoints || {};
+            completedSectionScores = state.completedSectionScores || {};
+            displayedTotalScore = state.displayedTotalScore || 0;
+            totalScore = state.totalScore || 0;
+            completedSections = state.completedSections || {};
+            showingSectionComplete = state.showingSectionComplete || false;
+        }
+
+        function clearProgress(teamName) {
+            try {
+                const key = getStorageKey(teamName);
+                localStorage.removeItem(key);
+                console.log('Progress cleared for team:', teamName);
+            } catch (error) {
+                console.warn('Failed to clear progress:', error);
+            }
+        }
+
+        function hasStorageSupport() {
+            try {
+                const testKey = 'localStorage_test';
+                localStorage.setItem(testKey, 'test');
+                localStorage.removeItem(testKey);
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // Progress Management Functions
+        function checkForSavedProgress(event) {
+            event.preventDefault();
+            const inputTeamName = document.getElementById('teamName').value.trim();
+            
+            if (inputTeamName.length < 2) {
+                alert('Please enter a team name with at least 2 characters');
+                return;
+            }
+
+            if (!hasStorageSupport()) {
+                // No localStorage support, start new quiz
+                teamName = inputTeamName;
+                startQuiz();
+                return;
+            }
+
+            const savedState = loadProgress(inputTeamName);
+            
+            if (savedState) {
+                // Show resume options
+                showResumeOptions(savedState);
+            } else {
+                // No saved progress, start new quiz
+                teamName = inputTeamName;
+                startQuiz();
+            }
+        }
+
+        function showResumeOptions(savedState) {
+            const sectionName = quizData[savedState.currentSection]?.name || 'Unknown';
+            
+            document.getElementById('resumeTeamName').textContent = savedState.teamName;
+            document.getElementById('resumeSection').textContent = `${savedState.currentSection + 1} (${sectionName})`;
+            document.getElementById('resumeQuestion').textContent = savedState.currentQuestion + 1;
+            
+            document.getElementById('teamForm').style.display = 'none';
+            document.getElementById('resumeOptions').classList.remove('hidden');
+        }
+
+        function resumeQuiz() {
+            const inputTeamName = document.getElementById('teamName').value.trim();
+            const savedState = loadProgress(inputTeamName);
+            
+            if (savedState) {
+                restoreState(savedState);
+                initializeQuizScreen();
+                
+                // Show appropriate screen based on saved state
+                if (savedState.showingSectionComplete) {
+                    showSectionComplete();
+                } else {
+                    loadQuestion();
+                }
+            }
+        }
+
+        function startNewQuiz() {
+            teamName = document.getElementById('teamName').value.trim();
+            startQuiz();
+        }
+
+        function clearAndRestart() {
+            const inputTeamName = document.getElementById('teamName').value.trim();
+            clearProgress(inputTeamName);
+            teamName = inputTeamName;
+            startQuiz();
+        }
+
+        function goBackToTeamName() {
+            document.getElementById('teamForm').style.display = 'block';
+            document.getElementById('resumeOptions').classList.add('hidden');
+        }
+
+        function initializeQuizScreen() {
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            document.getElementById('teamDisplay').textContent = teamName;
+            document.getElementById('totalDisplay').textContent = totalQuestions * 10;
+            document.getElementById('scoreDisplay').textContent = displayedTotalScore;
+            
+            renderSectionNav();
+        }
+
+        function clearProgressAndRestart() {
+            if (confirm('Are you sure you want to clear all progress and start over? This cannot be undone.')) {
+                clearProgress(teamName);
+                restartQuiz();
+            }
+        }
+
+        // Initialize
+        function init() {
+            calculateTotalQuestions();
+        }
+
+        function calculateTotalQuestions() {
+            totalQuestions = quizData.reduce((sum, section) => sum + section.questions.length, 0);
+        }
+
+        // Start Quiz (modified to work with new flow)
+        function startQuiz() {
+            // Reset all state for new quiz
+            currentSection = 0;
+            currentQuestion = 0;
+            userAnswers = {};
+            lockedAnswers = {};
+            closestAnswerSelections = {};
+            bonusPoints = {};
+            completedSectionScores = {};
+            displayedTotalScore = 0;
+            totalScore = 0;
+            completedSections = {};
+            showingSectionComplete = false;
+
+            initializeQuizScreen();
+            loadQuestion();
+            
+            // Save initial state
+            saveProgress();
+        }
+
+        // Render Section Navigation
+        function renderSectionNav() {
+            const nav = document.getElementById('sectionNav');
+            nav.innerHTML = '';
+
+            quizData.forEach((section, index) => {
+                const btn = document.createElement('div');
+                btn.className = 'section-btn';
+                if (index === currentSection) btn.classList.add('active');
+                
+                const answeredCount = countAnsweredQuestions(index);
+                if (answeredCount === section.questions.length) {
+                    btn.classList.add('completed');
+                }
+
+                btn.innerHTML = `
+                    <div class="section-title">${section.name}</div>
+                    <div class="section-progress">${answeredCount}/${section.questions.length} answered</div>
+                `;
+                btn.onclick = () => goToSection(index);
+                nav.appendChild(btn);
+            });
+        }
+
+        function countAnsweredQuestions(sectionIndex) {
+            let count = 0;
+            const section = quizData[sectionIndex];
+            for (let i = 0; i < section.questions.length; i++) {
+                const key = `${sectionIndex}-${i}`;
+                if (userAnswers[key] !== undefined) count++;
+            }
+            return count;
+        }
+
+        function goToSection(index) {
+            currentSection = index;
+            currentQuestion = 0;
+            
+            // Restore question card structure if showing section complete
+            if (showingSectionComplete) {
+                const questionCard = document.getElementById('questionCard');
+                questionCard.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-number" id="questionNumber"></div>
+                        <h2 class="question-text" id="questionText"></h2>
+                        <div id="flagImage" class="flag-image hidden"></div>
+                    </div>
+                    <div id="answerOptions" class="answer-options"></div>
+                    <div class="question-navigation">
+                        <button id="prevBtn" class="btn btn-secondary" style="display: none;">← Previous</button>
+                        <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next →</button>
+                    </div>
+                `;
+            }
+            
+            loadQuestion();
+            renderSectionNav();
+        }
+
+        // Load Question
+        function loadQuestion() {
+            // Check if section is complete and should show summary
+            if (checkSectionComplete(currentSection) && !completedSections[currentSection]) {
+                showSectionComplete();
+                return;
+            }
+
+            showingSectionComplete = false;
+            const section = quizData[currentSection];
+            const question = section.questions[currentQuestion];
+            const key = `${currentSection}-${currentQuestion}`;
+            const isLocked = lockedAnswers[key] === true; // Check if answer is locked
+
+            document.getElementById('questionNumber').textContent = 
+                `Section: ${section.name} - Question ${currentQuestion + 1} of ${section.questions.length}`;
+            document.getElementById('questionText').textContent = question.question + (isLocked ? ' 🔒' : '');
+
+            // Handle flag image
+            const flagImage = document.getElementById('flagImage');
+            if (question.flag) {
+                flagImage.textContent = question.flag;
+                flagImage.classList.remove('hidden');
+            } else {
+                flagImage.classList.add('hidden');
+            }
+
+            // Render answer options
+            const optionsContainer = document.getElementById('answerOptions');
+            optionsContainer.innerHTML = '';
+
+            // Check if this is an estimation question
+            if (section.type === 'estimation') {
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'estimation-input form-control';
+                input.placeholder = 'Enter your answer';
+                input.disabled = isLocked;
+                
+                if (userAnswers[key] !== undefined) {
+                    input.value = userAnswers[key];
+                }
+
+                if (!isLocked) {
+                    input.addEventListener('input', (e) => {
+                        const value = parseFloat(e.target.value);
+                        if (!isNaN(value)) {
+                            userAnswers[key] = value;
+                            document.getElementById('nextBtn').disabled = false;
+                            // Save progress after estimation input
+                            saveProgress();
+                        } else {
+                            delete userAnswers[key];
+                            document.getElementById('nextBtn').disabled = true;
+                        }
+                    });
+                }
+                
+                optionsContainer.appendChild(input);
+            } else {
+                // Multiple choice question
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'answer-option';
+                    optionDiv.textContent = option;
+                    
+                    if (userAnswers[key] === index) {
+                        optionDiv.classList.add('selected');
+                    }
+
+                    if (isLocked) {
+                        optionDiv.classList.add('disabled');
+                    } else {
+                        optionDiv.onclick = () => selectAnswer(index);
+                    }
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+            }
+
+            // Update navigation buttons - remove previous button
+            document.getElementById('prevBtn').style.display = 'none';
+            
+            const isLastQuestion = currentSection === quizData.length - 1 && 
+                                  currentQuestion === section.questions.length - 1;
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.textContent = isLastQuestion ? 'Finish Quiz' : 'Next →';
+            nextBtn.disabled = userAnswers[key] === undefined;
+
+            updateProgress();
+        }
+
+        // Select Answer
+        function selectAnswer(answerIndex) {
+            const key = `${currentSection}-${currentQuestion}`;
+            
+            // Don't allow changing locked answers
+            if (lockedAnswers[key] === true) {
+                return;
+            }
+            
+            userAnswers[key] = answerIndex;
+            
+            // Update UI
+            const section = quizData[currentSection];
+            if (section.type !== 'estimation') {
+                const options = document.querySelectorAll('.answer-option');
+                options.forEach((opt, idx) => {
+                    opt.classList.remove('selected');
+                    if (idx === answerIndex) {
+                        opt.classList.add('selected');
+                    }
+                });
+            }
+
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+
+            // Do NOT update total score display during question answering
+            // Score will be updated only when section is complete
+            renderSectionNav();
+            
+            // Save progress after each answer
+            saveProgress();
+        }
+
+        // Calculate Score
+        function calculateScore() {
+            totalScore = 0;
+            
+            Object.keys(userAnswers).forEach(key => {
+                const [sectionIdx, questionIdx] = key.split('-').map(Number);
+                const section = quizData[sectionIdx];
+                const question = section.questions[questionIdx];
+                
+                if (section.type === 'estimation') {
+                    // Estimation scoring with tolerance
+                    const userAnswer = parseFloat(userAnswers[key]);
+                    const correctAnswer = question.answer;
+                    const tolerance = question.tolerance;
+                    
+                    const difference = Math.abs(userAnswer - correctAnswer);
+                    const percentDiff = (difference / correctAnswer) * 100;
+                    
+                    if (percentDiff <= 5) {
+                        totalScore += 10; // Exact or within 5%
+                    } else if (percentDiff <= tolerance) {
+                        totalScore += 5; // Within tolerance (15%)
+                    }
+                    // else 0 points
+                } else {
+                    // Multiple choice scoring
+                    if (userAnswers[key] === question.correct) {
+                        totalScore += 10;
+                    }
+                }
+            });
+
+            // Add bonus points from closest answer selections
+            Object.values(bonusPoints).forEach(sectionBonus => {
+                totalScore += sectionBonus;
+            });
+
+            // DO NOT update display during question answering - only when section is complete
+            // The displayed score is now managed separately in updateDisplayedScore()
+        }
+
+        // Update the displayed total score (only called when section is complete)
+        function updateDisplayedScore() {
+            // Calculate score from completed sections only
+            displayedTotalScore = 0;
+            
+            Object.keys(completedSectionScores).forEach(sectionIdx => {
+                displayedTotalScore += completedSectionScores[sectionIdx];
+            });
+            
+            // Update the display with animation effect
+            const scoreElement = document.getElementById('scoreDisplay');
+            scoreElement.style.transition = 'all 0.5s ease';
+            scoreElement.style.transform = 'scale(1.1)';
+            scoreElement.style.color = 'var(--color-success)';
+            
+            setTimeout(() => {
+                scoreElement.textContent = displayedTotalScore;
+                setTimeout(() => {
+                    scoreElement.style.transform = 'scale(1)';
+                    scoreElement.style.color = '';
+                }, 100);
+            }, 200);
+        }
+
+        // Update Progress
+        function updateProgress() {
+            const answeredCount = Object.keys(userAnswers).length;
+            const progress = (answeredCount / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // Check if section is complete
+        function checkSectionComplete(sectionIdx) {
+            const section = quizData[sectionIdx];
+            for (let i = 0; i < section.questions.length; i++) {
+                const key = `${sectionIdx}-${i}`;
+                if (userAnswers[key] === undefined) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Get score for a specific question
+        function getQuestionScore(sectionIdx, questionIdx) {
+            const key = `${sectionIdx}-${questionIdx}`;
+            const section = quizData[sectionIdx];
+            const question = section.questions[questionIdx];
+            
+            if (userAnswers[key] === undefined) return 0;
+            
+            if (section.type === 'estimation') {
+                const userAnswer = parseFloat(userAnswers[key]);
+                const correctAnswer = question.answer;
+                const tolerance = question.tolerance;
+                
+                const difference = Math.abs(userAnswer - correctAnswer);
+                const percentDiff = (difference / correctAnswer) * 100;
+                
+                if (percentDiff <= 5) return 10;
+                if (percentDiff <= tolerance) return 5;
+                return 0;
+            } else {
+                return userAnswers[key] === question.correct ? 10 : 0;
+            }
+        }
+
+        // Show section complete screen
+        function showSectionComplete() {
+            showingSectionComplete = true;
+            const section = quizData[currentSection];
+            
+            // Lock all answers in the current section
+            for (let i = 0; i < section.questions.length; i++) {
+                const key = `${currentSection}-${i}`;
+                lockedAnswers[key] = true;
+            }
+            
+            // Calculate section score (base score + bonus points)
+            let sectionScore = 0;
+            for (let i = 0; i < section.questions.length; i++) {
+                sectionScore += getQuestionScore(currentSection, i);
+            }
+            
+            // Add bonus points for this section if it's an estimation section
+            const sectionBonus = bonusPoints[currentSection] || 0;
+            const totalSectionScore = sectionScore + sectionBonus;
+            
+            // Store the completed section score
+            completedSectionScores[currentSection] = totalSectionScore;
+            
+            // Update the displayed total score NOW (not during question answering)
+            updateDisplayedScore();
+            
+            // Create section complete screen
+            const questionCard = document.getElementById('questionCard');
+            
+            if (section.type === 'estimation') {
+                showEstimationSectionComplete(section, sectionScore);
+            } else {
+                showRegularSectionComplete(section, sectionScore);
+            }
+            
+            completedSections[currentSection] = true;
+            calculateScore();
+            
+            // Save progress after section completion
+            saveProgress();
+        }
+
+        // Show regular (non-estimation) section complete screen
+        function showRegularSectionComplete(section, sectionScore) {
+            const questionCard = document.getElementById('questionCard');
+            questionCard.innerHTML = `
+                <div class="section-complete">
+                    <h2 class="section-complete-title">🎉 Section Complete!</h2>
+                    <h3>${section.name}</h3>
+                    <div class="section-complete-score">${sectionScore} / ${section.questions.length * 10} points</div>
+                    
+                    <div class="score-update-notice">
+                        <small style="color: var(--color-success); font-weight: var(--font-weight-medium);">
+                            ✨ Total score updated! +${sectionScore} points added to your total.
+                        </small>
+                    </div>
+                    
+                    <div class="section-complete-breakdown">
+                        <h4 style="margin-bottom: var(--space-16); text-align: center;">Question Breakdown:</h4>
+                        ${section.questions.map((q, idx) => {
+                            const points = getQuestionScore(currentSection, idx);
+                            const key = `${currentSection}-${idx}`;
+                            const userAns = userAnswers[key];
+                            const isCorrect = userAns === q.correct;
+                            
+                            const answerDisplay = `Your answer: ${q.options[userAns]}`;
+                            
+                            // Create correct answer display for incorrect answers
+                            const correctAnswerDisplay = !isCorrect ? 
+                                `<div class="correct-answer-display">
+                                    <span class="answer-status-icon">✓</span>
+                                    Correct answer: ${q.options[q.correct]}
+                                </div>` : '';
+                            
+                            const statusIcon = isCorrect ? '✅' : '❌';
+                            const resultClass = isCorrect ? 'correct' : 'incorrect';
+                            
+                            return `
+                                <div class="question-result ${resultClass}">
+                                    <div class="question-result-text">
+                                        <strong>Q${idx + 1}:</strong> ${q.question}<br>
+                                        <div class="answer-status">
+                                            <span class="answer-status-icon">${statusIcon}</span>
+                                            <small style="color: var(--color-text-secondary);">${answerDisplay}</small>
+                                        </div>
+                                        ${correctAnswerDisplay}
+                                    </div>
+                                    <div class="question-result-points">${points} pts</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="continueToNextSection()" style="margin-top: var(--space-24);">
+                        ${currentSection === quizData.length - 1 ? 'View Final Results' : 'Continue to Next Section'}
+                    </button>
+                </div>
+            `;
+        }
+
+        // Show estimation section complete screen with closest answer selection
+        function showEstimationSectionComplete(section, sectionScore) {
+            const questionCard = document.getElementById('questionCard');
+            
+            // Get existing selections for this section if any
+            const existingSelections = closestAnswerSelections[currentSection] || {};
+            let currentBonusPoints = bonusPoints[currentSection] || 0;
+            
+            questionCard.innerHTML = `
+                <div class="section-complete">
+                    <h2 class="section-complete-title">🎉 Estimation Section Complete!</h2>
+                    <h3>${section.name}</h3>
+                    
+                    <div class="estimation-scores">
+                        <div class="section-complete-score">Base Score: ${sectionScore} / ${section.questions.length * 10} points</div>
+                        <div class="bonus-score" id="bonusScoreDisplay">Closest Answer Bonus: +${currentBonusPoints} points</div>
+                        <div class="total-score" id="totalScoreDisplay">Section Total: ${sectionScore + currentBonusPoints} points</div>
+                        
+                        <div class="score-update-notice">
+                            <small style="color: var(--color-success); font-weight: var(--font-weight-medium);">
+                                ✨ Total score updated! Points from this section added to your total.
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <div class="section-complete-breakdown">
+                        <h4 style="margin-bottom: var(--space-16); text-align: center;">Your Answers vs. Correct Answers:</h4>
+                        <div class="estimation-honest-note">
+                            <small style="color: var(--color-text-secondary); font-style: italic;">
+                                📋 This feature relies on your honesty. Please only claim points where you actually were closest among your peers.
+                            </small>
+                        </div>
+                        
+                        ${section.questions.map((q, idx) => {
+                            const points = getQuestionScore(currentSection, idx);
+                            const key = `${currentSection}-${idx}`;
+                            const userAns = parseFloat(userAnswers[key]);
+                            const correctAns = q.answer;
+                            const difference = Math.abs(userAns - correctAns);
+                            const percentDiff = (difference / correctAns) * 100;
+                            
+                            // Determine if answer is correct (within tolerance)
+                            const isCorrect = percentDiff <= q.tolerance;
+                            
+                            // Determine color based on accuracy
+                            let accuracyClass = 'accuracy-poor';
+                            let accuracyIcon = '🔴';
+                            if (percentDiff <= 5) {
+                                accuracyClass = 'accuracy-excellent';
+                                accuracyIcon = '🟢';
+                            } else if (percentDiff <= q.tolerance) {
+                                accuracyClass = 'accuracy-good';
+                                accuracyIcon = '🟡';
+                            }
+                            
+                            const isSelected = existingSelections[idx] === true;
+                            
+                            // Create correct answer display for incorrect answers
+                            const correctAnswerDisplay = !isCorrect ? 
+                                `<div class="correct-answer-display">
+                                    <span class="answer-status-icon">✓</span>
+                                    Correct answer: <strong>${correctAns.toLocaleString()}</strong>
+                                </div>` : '';
+                            
+                            return `
+                                <div class="estimation-question-result ${accuracyClass}">
+                                    <div class="question-result-header">
+                                        <strong>Q${idx + 1}:</strong> ${q.question}
+                                        <div class="question-result-points">${points} pts ${accuracyIcon}</div>
+                                    </div>
+                                    <div class="estimation-answers">
+                                        <div class="answer-comparison">
+                                            <span class="user-answer">Your answer: <strong>${userAns.toLocaleString()}</strong></span>
+                                            ${!isCorrect ? `<span class="difference">Difference: <strong>${difference.toLocaleString()}</strong></span>` : ''}
+                                        </div>
+                                        ${correctAnswerDisplay}
+                                    </div>
+                                    <div class="closest-answer-selection">
+                                        <label class="closest-checkbox">
+                                            <input type="checkbox" 
+                                                   id="closest_${currentSection}_${idx}" 
+                                                   ${isSelected ? 'checked' : ''}
+                                                   onchange="toggleClosestAnswer(${currentSection}, ${idx})">
+                                            <span class="checkbox-label">🎯 I was closest on this question (+10 bonus points)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                    
+                    <div class="section-actions">
+                        <p class="closest-instructions">
+                            Select the questions where you were closest to the correct answer compared to your teammates.
+                        </p>
+                        <button class="btn btn-primary" onclick="continueToNextSection()" style="margin-top: var(--space-24);">
+                            ${currentSection === quizData.length - 1 ? 'View Final Results' : 'Continue to Next Section'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Toggle closest answer selection
+        function toggleClosestAnswer(sectionIdx, questionIdx) {
+            if (!closestAnswerSelections[sectionIdx]) {
+                closestAnswerSelections[sectionIdx] = {};
+            }
+            
+            const checkbox = document.getElementById(`closest_${sectionIdx}_${questionIdx}`);
+            const isChecked = checkbox.checked;
+            
+            closestAnswerSelections[sectionIdx][questionIdx] = isChecked;
+            
+            // Update bonus points for this section
+            const selectedCount = Object.values(closestAnswerSelections[sectionIdx]).filter(Boolean).length;
+            bonusPoints[sectionIdx] = selectedCount * 10;
+            
+            // Update display on the section complete screen only
+            const bonusDisplay = document.getElementById('bonusScoreDisplay');
+            const totalDisplay = document.getElementById('totalScoreDisplay');
+            
+            if (bonusDisplay && totalDisplay) {
+                const baseScore = calculateSectionScore(sectionIdx);
+                const bonus = bonusPoints[sectionIdx];
+                
+                bonusDisplay.textContent = `Closest Answer Bonus: +${bonus} points`;
+                totalDisplay.textContent = `Section Total: ${baseScore + bonus} points`;
+                
+                // Update the stored completed section score
+                completedSectionScores[sectionIdx] = baseScore + bonus;
+                
+                // Update the main displayed total score
+                updateDisplayedScore();
+            }
+            
+            // Do NOT call calculateScore() here - it would update displayed total during section
+            
+            // Save progress after bonus point selection
+            saveProgress();
+        }
+
+        // Calculate score for a specific section
+        function calculateSectionScore(sectionIdx) {
+            const section = quizData[sectionIdx];
+            let sectionScore = 0;
+            for (let i = 0; i < section.questions.length; i++) {
+                sectionScore += getQuestionScore(sectionIdx, i);
+            }
+            return sectionScore;
+        }
+
+        // Continue to next section
+        function continueToNextSection() {
+            if (currentSection === quizData.length - 1) {
+                showResults();
+            } else {
+                currentSection++;
+                currentQuestion = 0;
+                showingSectionComplete = false;
+                
+                // Save progress when moving to next section
+                saveProgress();
+                
+                // Restore question card structure
+                const questionCard = document.getElementById('questionCard');
+                questionCard.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-number" id="questionNumber"></div>
+                        <h2 class="question-text" id="questionText"></h2>
+                        <div id="flagImage" class="flag-image hidden"></div>
+                    </div>
+                    <div id="answerOptions" class="answer-options"></div>
+                    <div class="question-navigation">
+                        <button id="prevBtn" class="btn btn-secondary" style="display: none;">← Previous</button>
+                        <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next →</button>
+                    </div>
+                `;
+                
+                loadQuestion();
+                renderSectionNav();
+            }
+        }
+
+        // Navigation
+        function nextQuestion() {
+            const section = quizData[currentSection];
+            const key = `${currentSection}-${currentQuestion}`;
+            
+            // Don't allow proceeding without an answer
+            if (userAnswers[key] === undefined) {
+                return;
+            }
+            
+            // Lock the current answer
+            lockedAnswers[key] = true;
+            
+            // Save progress after locking answer
+            saveProgress();
+            
+            const isLastQuestionInSection = currentQuestion === section.questions.length - 1;
+            const isLastSection = currentSection === quizData.length - 1;
+
+            if (isLastQuestionInSection) {
+                // Show section complete screen
+                showSectionComplete();
+            } else {
+                currentQuestion++;
+                saveProgress(); // Save progress when moving to next question
+                loadQuestion();
+            }
+        }
+
+        // Show Results
+        function showResults() {
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+
+            document.getElementById('finalTeamName').textContent = teamName;
+            
+            // Calculate total possible score (base questions + potential bonus)
+            const basePossibleScore = totalQuestions * 10;
+            document.getElementById('finalScore').textContent = `${totalScore} / ${basePossibleScore}`;
+
+            const percentage = (totalScore / basePossibleScore) * 100;
+            let message = '';
+            if (percentage >= 90) message = '🎉 Outstanding! You\'re a quiz champion!';
+            else if (percentage >= 75) message = '🌟 Excellent work! Very impressive!';
+            else if (percentage >= 60) message = '👏 Good job! Well done!';
+            else if (percentage >= 40) message = '👍 Not bad! Keep practicing!';
+            else message = '💪 Keep learning! You\'ll do better next time!';
+
+            document.getElementById('scoreMessage').textContent = message;
+
+            // Show section breakdown
+            const resultsContainer = document.getElementById('sectionResults');
+            resultsContainer.innerHTML = '';
+
+            quizData.forEach((section, sectionIdx) => {
+                // Use completed section scores if available, otherwise calculate
+                const completedScore = completedSectionScores[sectionIdx];
+                if (completedScore !== undefined) {
+                    // Section was completed - use stored score
+                    const resultDiv = document.createElement('div');
+                    resultDiv.className = 'section-result';
+                    resultDiv.innerHTML = `
+                        <span class="section-result-name">${section.name}</span>
+                        <span class="section-result-score">${completedScore}</span>
+                    `;
+                    resultsContainer.appendChild(resultDiv);
+                } else {
+                    // Section not completed - show as incomplete
+                    const resultDiv = document.createElement('div');
+                    resultDiv.className = 'section-result';
+                    resultDiv.innerHTML = `
+                        <span class="section-result-name">${section.name}</span>
+                        <span class="section-result-score" style="color: var(--color-text-secondary);">Not completed</span>
+                    `;
+                    resultsContainer.appendChild(resultDiv);
+                }
+            });
+
+            // Update total score to use displayedTotalScore
+            document.getElementById('finalScore').textContent = `${displayedTotalScore} / ${basePossibleScore}`;
+        }
+
+        // Restart Quiz
+        function restartQuiz() {
+            // Clear progress before resetting
+            if (teamName) {
+                clearProgress(teamName);
+            }
+            
+            currentSection = 0;
+            currentQuestion = 0;
+            userAnswers = {};
+            lockedAnswers = {};
+            closestAnswerSelections = {};
+            bonusPoints = {};
+            completedSectionScores = {};
+            displayedTotalScore = 0;
+            totalScore = 0;
+            teamName = '';
+            completedSections = {};
+            showingSectionComplete = false;
+
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'flex';
+            document.getElementById('teamName').value = '';
+            document.getElementById('scoreDisplay').textContent = '0';
+            
+            // Reset welcome screen state
+            document.getElementById('teamForm').style.display = 'block';
+            document.getElementById('resumeOptions').classList.add('hidden');
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Enhancement</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Team Ivy Pub Quiz Enhancement Test</h1>
+    
+    <div class="test-section">
+        <h2>✅ Enhancements Added:</h2>
+        <ul>
+            <li class="success">Added closest answer selection mechanic for estimation sections</li>
+            <li class="success">Enhanced section complete screen with answer differences</li>
+            <li class="success">Added bonus points calculation (+10 per closest answer)</li>
+            <li class="success">Updated scoring system to include bonus points</li>
+            <li class="success">Added visual indicators for answer accuracy (green/yellow/red)</li>
+            <li class="success">Added honest system note</li>
+            <li class="success">Enhanced results display to show bonus points</li>
+            <li class="success">Added responsive mobile styles</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎯 Key Features:</h2>
+        <ul>
+            <li><strong>Estimation Section Complete Screen:</strong> Shows user answer, correct answer, and difference</li>
+            <li><strong>Closest Answer Selection:</strong> Checkboxes to claim closest answer bonus points</li>
+            <li><strong>Bonus Points:</strong> +10 points per question where user claims to be closest</li>
+            <li><strong>Visual Feedback:</strong> Color-coded accuracy indicators</li>
+            <li><strong>Honest System:</strong> Note encouraging honesty in point claiming</li>
+            <li><strong>Updated Scoring:</strong> Total score includes base points + bonus points</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>📱 How to Test:</h2>
+        <ol>
+            <li>Open the main Index.html file in a browser</li>
+            <li>Start the quiz and proceed to an estimation section ("Estimation & Numbers" or "Wild Guesses")</li>
+            <li>Answer the estimation questions</li>
+            <li>Complete the section to see the enhanced section complete screen</li>
+            <li>Check the answer differences and select closest answer checkboxes</li>
+            <li>Observe the bonus points calculation</li>
+            <li>Continue to see updated total scores</li>
+        </ol>
+    </div>
+    
+    <div class="test-section">
+        <h2>💻 Technical Implementation:</h2>
+        <ul>
+            <li>Added new state variables: <code>closestAnswerSelections</code>, <code>bonusPoints</code></li>
+            <li>Enhanced <code>showSectionComplete()</code> function with estimation-specific logic</li>
+            <li>Added <code>toggleClosestAnswer()</code> function for checkbox interactions</li>
+            <li>Updated <code>calculateScore()</code> to include bonus points</li>
+            <li>Added comprehensive CSS styles for the new UI elements</li>
+            <li>Enhanced mobile responsiveness</li>
+        </ul>
+    </div>
+</body>
+</html>
