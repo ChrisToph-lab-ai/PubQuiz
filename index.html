@@ -335,7 +335,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: var(--space-12);
-            margin-bottom: var(--space-24);
+            margin-bottom: var(--space-0);
         }
 
         .section-btn {
@@ -366,6 +366,26 @@
             font-size: var(--font-size-base);
             font-weight: var(--font-weight-medium);
             margin-bottom: var(--space-4);
+        }
+
+        /* Section Overview Styles */
+        .section-overview {
+            margin-top: var(--space-32);
+            padding: var(--space-24);
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-overview-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: var(--space-16);
+            text-align: center;
+            border-bottom: 1px solid var(--color-card-border);
+            padding-bottom: var(--space-12);
         }
 
         .section-progress {
@@ -838,6 +858,54 @@
                 margin-right: var(--space-8);
             }
         }
+
+        /* QR Code Section Styles */
+        .qr-code-section {
+            margin: var(--space-32) auto;
+            padding: var(--space-24);
+            background: var(--color-surface);
+            border: 2px solid var(--color-card-border);
+            border-radius: var(--radius-base);
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .qr-code-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .qr-code-image {
+            width: 150px;
+            height: 150px;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-12);
+        }
+
+        .qr-code-text {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        @media (max-width: 768px) {
+            .qr-code-section {
+                margin: var(--space-24) auto;
+                padding: var(--space-16);
+                max-width: 250px;
+            }
+
+            .qr-code-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .qr-code-text {
+                font-size: var(--font-size-sm);
+            }
+        }
     </style>
 </head>
 <body>
@@ -881,7 +949,7 @@
     <!-- Quiz Screen -->
     <div id="quizScreen" class="quiz-screen">
         <div class="container">
-            <!-- Quiz Header -->
+            <!-- Quiz Header with Score (Top) -->
             <div class="quiz-header">
                 <div class="quiz-header-top">
                     <div class="team-name-display">Team: <span id="teamDisplay"></span></div>
@@ -895,9 +963,6 @@
                 </div>
             </div>
 
-            <!-- Section Navigation -->
-            <div id="sectionNav" class="section-nav"></div>
-            
             <!-- Score Update Info -->
             <div class="score-info-note">
                 <small style="color: var(--color-text-secondary); font-style: italic; text-align: center; display: block; margin-bottom: var(--space-16);">
@@ -905,7 +970,7 @@
                 </small>
             </div>
 
-            <!-- Question Card -->
+            <!-- Active Question Section (Middle) -->
             <div id="questionCard" class="question-card">
                 <div class="question-header">
                     <div class="question-number" id="questionNumber"></div>
@@ -917,6 +982,12 @@
                     <button id="prevBtn" class="btn btn-secondary" onclick="previousQuestion()">← Previous</button>
                     <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next →</button>
                 </div>
+            </div>
+
+            <!-- Section Navigation Overview (Below Active Question) -->
+            <div class="section-overview">
+                <h3 class="section-overview-title">📋 Quiz Sections Overview</h3>
+                <div id="sectionNav" class="section-nav"></div>
             </div>
         </div>
     </div>
@@ -2584,5 +2655,14 @@
         // Initialize on load
         init();
     </script>
+
+    <!-- QR Code Section -->
+    <div class="qr-code-section">
+        <img src="QR_Code.png" alt="Share Quiz QR Code" class="qr-code-image">
+        <div class="qr-code-text">
+            📱 Share with friends!<br>
+            Scan to join the quiz
+        </div>
+    </div>
 </body>
 </html>
