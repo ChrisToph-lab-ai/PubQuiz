@@ -1159,27 +1159,27 @@
                     {
                         question: "How many countries are members of the United Nations?",
                         answer: 193,
-                        tolerance: 10
+                        tolerance: 1
                     },
                     {
                         question: "What is the approximate population of Germany in millions?",
                         answer: 84,
-                        tolerance: 2
+                        tolerance: 1
                     },
                     {
                         question: "How many bones are in the adult human body?",
                         answer: 206,
-                        tolerance: 15
+                        tolerance: 1
                     },
                     {
-                        question: "How many languages are spoken in the world today?",
+                        question: "Roughly how many languages are spoken in the world today?",
                         answer: 7000,
-                        tolerance: 150
+                        tolerance: 1
                     },
                     {
                         question: "In what year was the internet made publicly available (World Wide Web)?",
                         answer: 1991,
-                        tolerance: 0
+                        tolerance: 0.1
                     }
                 ]
             },
@@ -1190,31 +1190,31 @@
                     {
                         question: "In what year was the first iPhone released?",
                         answer: 2007,
-                        tolerance: 0
+                        tolerance: 0.1
                     },
                     {
-                        question: "What is the deepest ocean trench, the Mariana Trench, in meters?",
+                        question: "What is the deepest ocean trench, the Mariana Trench, approximately in meters?",
                         answer: 11000,
-                        tolerance: 900
+                        tolerance: 1
                     },
                     {
                         question: "Approximately how many hairs does an average human have on their head?",
                         answer: 100000,
-                        tolerance: 900
+                        tolerance: 1
                     },
                     {
                         question: "How many times per minute does the average human heart beat at rest?",
                         answer: 72,
-                        tolerance: 5
+                        tolerance: 10
                     },
                     {
-                        question: "What is the height of Mount Everest in meters?",
+                        question: "What is the exact height of Mount Everest in meters?",
                         answer: 8849,
-                        tolerance: 100
+                        tolerance: 1
                     }
                 ]
             },            
-       {
+           {
                 name: "🏳️ Country Flags - Round 1",
                 questions: [
                     {
@@ -1331,7 +1331,7 @@
                     }
                 ]
             },
-                {
+            {
                 name: "🔬 Forschungscampus Garching - TUM",
                 questions: [
                     {
@@ -2101,6 +2101,15 @@
             
             loadQuestion();
             renderSectionNav();
+            
+            // Scroll to the question card when a section is selected
+            const questionCard = document.getElementById('questionCard');
+            if (questionCard) {
+                questionCard.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
         }
 
         // Load Question
@@ -2247,10 +2256,10 @@
                     const difference = Math.abs(userAnswer - correctAnswer);
                     const percentDiff = (difference / correctAnswer) * 100;
                     
-                    if (percentDiff <= 5) {
-                        totalScore += 10; // Exact or within 5%
+                    if (userAnswer === correctAnswer) {
+                        totalScore += 10; // Exact match only
                     } else if (percentDiff <= tolerance) {
-                        totalScore += 5; // Within tolerance (15%)
+                        totalScore += 5; // Within tolerance
                     }
                     // else 0 points
                 } else {
@@ -2329,7 +2338,7 @@
                 const difference = Math.abs(userAnswer - correctAnswer);
                 const percentDiff = (difference / correctAnswer) * 100;
                 
-                if (percentDiff <= 5) return 10;
+                if (userAnswer === correctAnswer) return 10; // Exact match only
                 if (percentDiff <= tolerance) return 5;
                 return 0;
             } else {
@@ -2474,18 +2483,52 @@
                         ${section.questions.map((q, idx) => {
                             const points = getQuestionScore(currentSection, idx);
                             const key = `${currentSection}-${idx}`;
-                            const userAns = parseFloat(userAnswers[key]);
+                            const userAnswerRaw = userAnswers[key];
+                            
+                            // Handle unanswered questions
+                            if (userAnswerRaw === undefined) {
+                                const isSelected = existingSelections[idx] === true;
+                                return `
+                                    <div class="estimation-question-result accuracy-poor">
+                                        <div class="question-result-header">
+                                            <strong>Q${idx + 1}:</strong> ${q.question}
+                                            <div class="question-result-points">0 pts 🔴</div>
+                                        </div>
+                                        <div class="estimation-answers">
+                                            <div class="answer-comparison">
+                                                <span class="user-answer">Your answer: <strong>Not answered</strong></span>
+                                            </div>
+                                            <div class="correct-answer-display">
+                                                <span class="answer-status-icon">✓</span>
+                                                Correct answer: <strong>${q.answer.toLocaleString()}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="closest-answer-selection">
+                                            <label class="closest-checkbox">
+                                                <input type="checkbox" 
+                                                       id="closest_${currentSection}_${idx}" 
+                                                       ${isSelected ? 'checked' : ''}
+                                                       onchange="toggleClosestAnswer(${currentSection}, ${idx})">
+                                                <span class="checkbox-label">🎯 I was closest on this question (+10 bonus points)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                            
+                            const userAns = parseFloat(userAnswerRaw);
                             const correctAns = q.answer;
                             const difference = Math.abs(userAns - correctAns);
                             const percentDiff = (difference / correctAns) * 100;
                             
                             // Determine if answer is correct (within tolerance)
                             const isCorrect = percentDiff <= q.tolerance;
+                            const isExact = userAns === correctAns;
                             
                             // Determine color based on accuracy
                             let accuracyClass = 'accuracy-poor';
                             let accuracyIcon = '🔴';
-                            if (percentDiff <= 5) {
+                            if (isExact) {
                                 accuracyClass = 'accuracy-excellent';
                                 accuracyIcon = '🟢';
                             } else if (percentDiff <= q.tolerance) {
@@ -2495,8 +2538,8 @@
                             
                             const isSelected = existingSelections[idx] === true;
                             
-                            // Create correct answer display for incorrect answers
-                            const correctAnswerDisplay = !isCorrect ? 
+                            // Create correct answer display for non-exact answers
+                            const correctAnswerDisplay = !isExact ? 
                                 `<div class="correct-answer-display">
                                     <span class="answer-status-icon">✓</span>
                                     Correct answer: <strong>${correctAns.toLocaleString()}</strong>
@@ -2511,7 +2554,7 @@
                                     <div class="estimation-answers">
                                         <div class="answer-comparison">
                                             <span class="user-answer">Your answer: <strong>${userAns.toLocaleString()}</strong></span>
-                                            ${!isCorrect ? `<span class="difference">Difference: <strong>${difference.toLocaleString()}</strong></span>` : ''}
+                                            ${!isExact ? `<span class="difference">Difference: <strong>${difference.toLocaleString()}</strong></span>` : ''}
                                         </div>
                                         ${correctAnswerDisplay}
                                     </div>
@@ -2748,5 +2791,3 @@
     </div>
 </body>
 </html>
-
-
